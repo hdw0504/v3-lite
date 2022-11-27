@@ -17,7 +17,7 @@ export default defineConfig({
   plugins: [
     Vue({
       // 响应式语法糖
-      // reactivityTransform: true,
+      reactivityTransform: true,
     }),
 
     // https://github.com/hannoeru/vite-plugin-pages
