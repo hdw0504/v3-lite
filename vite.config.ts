@@ -1,23 +1,27 @@
 /// <reference types="vitest" />
 
-import { resolve } from 'path'
+import path from 'path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
+import VueMacros from 'unplugin-vue-macros/vite'
 
 export default defineConfig({
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'),
+      '~/': `${path.resolve(__dirname, 'src')}/`,
     },
   },
   plugins: [
-    Vue({
-      // 响应式语法糖
-      reactivityTransform: true,
+    VueMacros({
+      plugins: {
+        vue: Vue({
+          reactivityTransform: true,
+        }),
+      },
     }),
 
     // https://github.com/hannoeru/vite-plugin-pages
